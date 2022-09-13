@@ -1,6 +1,7 @@
 <template>
   <app-header />
   <auth />
+  <router-view />
 </template>
 
 <script>

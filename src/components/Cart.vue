@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { computed } from "@vue/reactivity";
+import { computed } from "vue";
 // import store from "../store/index";
 export default {
   setup() {

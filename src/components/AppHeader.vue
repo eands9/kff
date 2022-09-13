@@ -1,8 +1,6 @@
 <template>
-  <header id="header" class="bg-white shadow-lg">
-    <nav
-      class="container mx-auto flex justify-start items-center py-2 px-2 text-lime-600"
-    >
+  <header id="header" class="bg-white">
+    <nav class="container mx-auto flex justify-start items-center py-2 px-2">
       <!-- logo and company name -->
       <router-link to="/"><img src="leaf.jpg" class="h-10 w-10" /></router-link>
       <router-link to="/"></router-link>
@@ -45,7 +43,7 @@
           </div>
           <img
             src="Kyle.png"
-            class="w-12 h-12 rounded-full cursor-pointer border-4 border-transparent hover:border-lime-700"
+            class="w-12 h-12 rounded-full cursor-pointer border-4 border-transparent hover:border-lime-500"
             alt=""
           />
         </div>

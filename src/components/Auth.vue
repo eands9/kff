@@ -55,7 +55,7 @@
                 @click.prevent="tab = 'register'"
                 :class="{
                   'hover:text-white text-white bg-lime-600': tab === 'register',
-                  'hover:text-blue-600': tab === 'login',
+                  'hover:text-lime-600': tab === 'login',
                 }"
                 >Register</a
               >
