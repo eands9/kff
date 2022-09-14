@@ -1,10 +1,7 @@
 <template>
   <div class="card">
     <h2>{{ product.name }}</h2>
-    <h3 class="price">Price: ${{ product.price.toFixed(0) }} / lb</h3>
-    <button class="view-product-button" @click="$emit('view-product', product)">
-      Buy
-    </button>
+    <h3 class="price">${{ product.price.toFixed(0) }} / lb</h3>
     <img :src="product.image" />
     <div class="flex flex-col md:flex-row gap-y-4 gap-x-2">
       <div
@@ -12,14 +9,16 @@
       >
         <button
           class="text-lime-500 text-3xl font-bold"
-          @click="updateCardCount('decrease')"
+          @click="storeCart.decreaseQuantity(product)"
         >
           -
         </button>
-        <span class="font-bold text-lime-500">{{ cartCount }}</span>
+        <span class="font-bold text-lime-500">{{
+          storeCart.productQuantity(product)
+        }}</span>
         <button
           class="text-lime-500 text-3xl font-bold"
-          @click="updateCardCount('increase')"
+          @click="storeCart.increaseQuantity(product)"
         >
           +
         </button>
@@ -37,26 +36,32 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { useCartStore } from "@/stores/cart";
 export default {
   props: ["product"],
+  setup() {
+    const storeCart = useCartStore();
+
+    return { storeCart };
+  },
   // computed: {
   //   description() {
   //     return this.product.substring(0, 150);
   //   },
   // },
-  setup() {
-    const cartCount = ref(0);
 
-    const updateCardCount = (action) => {
-      if (action === "decrease" && cartCount.value < 1) {
-        return;
-      }
-      action === "increase" ? cartCount.value++ : cartCount.value--;
-    };
+  // setup() {
+  //   const cartCount = ref(0);
 
-    return { cartCount, updateCardCount }
-  },
+  //   const updateCardCount = (action) => {
+  //     if (action === "decrease" && cartCount.value < 1) {
+  //       return;
+  //     }
+  //     action === "increase" ? cartCount.value++ : cartCount.value--;
+  //   };
+
+  //   return { cartCount, updateCardCount }
+  // },
 };
 </script>
 

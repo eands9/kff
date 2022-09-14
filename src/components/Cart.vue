@@ -45,12 +45,13 @@
 
 <script>
 import { computed } from "vue";
-// import store from "../store/index";
+import { useCartStore } from "@/stores/cart"
+
 export default {
   setup() {
     const cartQuantity = computed(() => {
-      return;
-      // return store.state.cartQuantity;
+      // return;
+      return store.state.cartQuantity;
     });
 
     const cartTotal = computed(() => {
