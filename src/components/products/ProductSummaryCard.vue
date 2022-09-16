@@ -3,9 +3,9 @@
     <h2>{{ product.name }}</h2>
     <h3 class="price">${{ product.price.toFixed(0) }} / lb</h3>
     <img :src="product.image" />
-    <div class="flex flex-col md:flex-row gap-y-4 gap-x-2">
+    <div class="flex flex-col md:flex-row gap-y-4 gap-x-2 align-bottom">
       <div
-        class="bg-light-grayish-blue flex rounded-md p-4 md:w-1/3 justify-between items-center"
+        class="bg-gray-100 px-3 flex rounded-md md:w-1/3 justify-between items-center"
       >
         <button
           class="text-lime-500 text-3xl font-bold"
@@ -13,7 +13,7 @@
         >
           -
         </button>
-        <span class="font-bold text-lime-500">{{
+        <span class="font-bold text-lime-500 yt-5">{{
           storeCart.productQuantity(product)
         }}</span>
         <button
@@ -23,14 +23,12 @@
           +
         </button>
       </div>
-      <div class="justify-center items-center">
-        <button
-          class="bg-lime-500 flex flex-1 py-2 px-2 rounded-md gap-x-2 shadow-md hover:opacity-60 hover:shadow-2xl"
-        >
-          <i class="fas fa-shopping-cart text-white text-sm"></i>
-          <span class="text-white">Add to Cart</span>
-        </button>
-      </div>
+      <button
+        class="bg-lime-500 flex flex-1 py-2 justify-center items-center rounded-md gap-x-2 shadow-md hover:opacity-60 hover:shadow-2xl"
+      >
+        <i class="fas fa-shopping-cart text-white text-sm"></i>
+        <span class="text-white">Add to Cart</span>
+      </button>
     </div>
   </div>
 </template>

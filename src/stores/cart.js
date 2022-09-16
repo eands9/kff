@@ -1,9 +1,5 @@
 import { defineStore } from "pinia";
 
-// function updateLocalStorage(cart) {
-//   localStorage.setItem("cart", JSON.stringify(cart));
-// }
-
 export const useCartStore = defineStore({
   id: "cartStore",
   state: () => ({
@@ -27,13 +23,7 @@ export const useCartStore = defineStore({
       if (item) {
         item.quantity--;
       }
-
-      //   if (this.cartQuantity < 1) return;
-      //   this.cartQuantity--;
     },
-    // updateCart(payload) {
-    //   this.cartQuantity += payload;
-    // },
     clearCart() {
       this.cartQuantity = 0;
     },
