@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp, watch } from "vue";
 import { createPinia } from "pinia";
 
 import App from "./App.vue";
@@ -11,11 +11,26 @@ import "./assets/main.css";
 
 let app;
 
+const pinia = createPinia();
+if (localStorage.getItem("cartState")) {
+  pinia.state.value.cartStore = JSON.parse(localStorage.getItem("cartState"));
+}
+
+watch(
+  () => pinia.state.value.cartStore,
+  (state) => {
+    localStorage.setItem("cartState", JSON.stringify(state));
+  },
+  {
+    deep: true,
+  }
+);
+
 auth.onAuthStateChanged(() => {
   if (!app) {
     app = createApp(App);
 
-    app.use(createPinia());
+    app.use(pinia);
     app.use(router);
     app.use(VeeValidatePlugin);
 
