@@ -8,7 +8,7 @@
         class="bg-gray-100 px-3 flex rounded-md md:w-1/3 justify-between items-center"
       >
         <button
-          class="text-lime-500 text-3xl font-bold"
+          class="text-lime-500 text-3xl font-bold hover:text-lime-600"
           @click="storeCart.decreaseQuantity(product)"
         >
           -
@@ -17,14 +17,14 @@
           storeCart.productQuantity(product)
         }}</span>
         <button
-          class="text-lime-500 text-3xl font-bold"
+          class="text-lime-500 text-3xl font-bold hover:text-lime-600"
           @click="storeCart.increaseQuantity(product)"
         >
           +
         </button>
       </div>
       <button
-        class="bg-lime-500 flex flex-1 py-2 justify-center items-center rounded-md gap-x-2 shadow-md hover:opacity-60 hover:shadow-2xl"
+        class="bg-lime-500 flex flex-1 py-2 justify-center items-center rounded-md gap-x-2 shadow-md hover:bg-lime-600"
       >
         <i class="fas fa-shopping-cart text-white text-sm"></i>
         <span class="text-white">Add to Cart</span>
