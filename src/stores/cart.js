@@ -4,8 +4,7 @@ export const useCartStore = defineStore({
   id: "cartStore",
   state: () => ({
     cart: [],
-    cartQuantity: 0,
-    cartTotal: 0,
+    cartTotal: [],
   }),
   actions: {
     increaseQuantity(product) {
@@ -23,6 +22,10 @@ export const useCartStore = defineStore({
       if (item) {
         item.quantity--;
       }
+    },
+    addToCart(product) {
+      let item = this.cart.find((i) => i.id === product.id);
+      this.cartTotal.push({ item });
     },
     clearCart() {
       this.cartQuantity = 0;

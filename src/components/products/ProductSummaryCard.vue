@@ -27,7 +27,9 @@
         class="bg-lime-500 flex flex-1 py-2 justify-center items-center rounded-md gap-x-2 shadow-md hover:bg-lime-600"
       >
         <i class="fas fa-shopping-cart text-white text-sm"></i>
-        <span class="text-white">Add to Cart</span>
+        <span class="text-white" @click="storeCart.addToCart(product)"
+          >Add to Cart</span
+        >
       </button>
     </div>
   </div>

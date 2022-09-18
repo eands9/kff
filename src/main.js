@@ -11,7 +11,11 @@ import "./assets/main.css";
 
 let app;
 
+
 const pinia = createPinia();
+
+// if an Array.push does not work, it's because there's a local storage item that needs to be removed when the state structure is changed
+// localStorage.removeItem("cartState");
 if (localStorage.getItem("cartState")) {
   pinia.state.value.cartStore = JSON.parse(localStorage.getItem("cartState"));
 }
