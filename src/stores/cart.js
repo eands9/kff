@@ -25,7 +25,14 @@ export const useCartStore = defineStore({
     },
     addToCart(product) {
       let item = this.cart.find((i) => i.id === product.id);
-      this.cartTotal.push({ item });
+      let itemInCart = this.cartTotal.find((j) => j.id === product.id);
+
+      if (itemInCart) {
+        this.cartTotal.splice(this.cartTotal.indexOf(itemInCart.id, 1));
+        this.cartTotal.push({ ...item });
+      } else {
+        this.cartTotal.push({ ...item });
+      }
     },
     clearCart(product) {
       // Delete record from card/cart and not cartTotal
