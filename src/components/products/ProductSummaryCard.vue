@@ -5,11 +5,12 @@
     <img :src="product.image" />
     <div class="flex flex-col md:flex-row gap-y-4 gap-x-2 align-bottom">
       <div
-        class="bg-gray-100 px-3 flex rounded-md md:w-1/3 justify-between items-center"
+        v-if="storeCart.productQuantity(product) > 0"
+        class="bg-gray-100 px-3 flex flex-1 rounded-md md:w-1/3 justify-between items-center"
       >
         <button
           class="text-lime-500 text-3xl font-bold hover:text-lime-600"
-          @click="storeCart.decreaseQuantity(product)"
+          @click.prevent="storeCart.decreaseQuantity(product)"
         >
           -
         </button>
@@ -18,18 +19,18 @@
         }}</span>
         <button
           class="text-lime-500 text-3xl font-bold hover:text-lime-600"
-          @click="storeCart.increaseQuantity(product)"
+          @click.prevent="storeCart.increaseQuantity(product)"
         >
           +
         </button>
       </div>
       <button
+        v-if="storeCart.productQuantity(product) === 0"
+        @click.prevent="storeCart.increaseQuantity(product)"
         class="bg-lime-500 flex flex-1 py-2 justify-center items-center rounded-md gap-x-2 shadow-md hover:bg-lime-600"
       >
         <i class="fas fa-shopping-cart text-white text-sm"></i>
-        <span class="text-white" @click="storeCart.addToCart(product)"
-          >Add to Cart</span
-        >
+        <span class="text-white">Add to Cart</span>
       </button>
     </div>
   </div>
@@ -44,24 +45,6 @@ export default {
 
     return { storeCart };
   },
-  // computed: {
-  //   description() {
-  //     return this.product.substring(0, 150);
-  //   },
-  // },
-
-  // setup() {
-  //   const cartCount = ref(0);
-
-  //   const updateCardCount = (action) => {
-  //     if (action === "decrease" && cartCount.value < 1) {
-  //       return;
-  //     }
-  //     action === "increase" ? cartCount.value++ : cartCount.value--;
-  //   };
-
-  //   return { cartCount, updateCardCount }
-  // },
 };
 </script>
 

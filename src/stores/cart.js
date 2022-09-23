@@ -4,7 +4,6 @@ export const useCartStore = defineStore({
   id: "cartStore",
   state: () => ({
     cart: [],
-    cartTotal: [],
   }),
   actions: {
     increaseQuantity(product) {
@@ -19,21 +18,25 @@ export const useCartStore = defineStore({
     decreaseQuantity(product) {
       let item = this.cart.find((i) => i.id === product.id);
 
-      if (item) {
+      if (item && item.quantity > 0) {
         item.quantity--;
+        if (item.quantity === 0) {
+          let item2 = this.cart.find((i) => i.id === product.id);
+          this.cart.splice(this.cart.indexOf(item2.id, 1));
+        }
       }
     },
-    addToCart(product) {
-      let item = this.cart.find((i) => i.id === product.id);
-      let itemInCart = this.cartTotal.find((j) => j.id === product.id);
+    // addToCart(product) {
+    //   let item = this.cart.find((i) => i.id === product.id);
+    //   let itemInCart = this.cartTotal.find((j) => j.id === product.id);
 
-      if (itemInCart) {
-        this.cartTotal.splice(this.cartTotal.indexOf(itemInCart.id, 1));
-        this.cartTotal.push({ ...item });
-      } else {
-        this.cartTotal.push({ ...item });
-      }
-    },
+    //   if (itemInCart) {
+    //     this.cartTotal.splice(this.cartTotal.indexOf(itemInCart.id, 1));
+    //     this.cartTotal.push({ ...item });
+    //   } else {
+    //     this.cartTotal.push({ ...item });
+    //   }
+    // },
     clearCart(product) {
       // Delete record from card/cart and not cartTotal
       let item = this.cart.find((i) => i.id === product.id);
@@ -45,6 +48,16 @@ export const useCartStore = defineStore({
       const item = state.cart.find((i) => i.id === product.id);
 
       if (item) return item.quantity;
+      else return 0;
+    },
+    totalQuantity: (state) => () => {
+      let totalQty = 0;
+
+      state.cart.forEach((element) => {
+        totalQty = totalQty + element.quantity;
+      });
+
+      if (totalQty) return totalQty;
       else return 0;
     },
   },

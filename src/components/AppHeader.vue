@@ -2,7 +2,9 @@
   <header id="header" class="bg-white">
     <nav class="container mx-auto flex justify-start items-center py-2 px-2">
       <!-- logo and company name -->
-      <router-link to="/"><img src="leaf.jpg" class="h-10 w-10 sm:flex-shrink-0" /></router-link>
+      <router-link to="/"
+        ><img src="leaf.jpg" class="h-10 w-10 sm:flex-shrink-0"
+      /></router-link>
       <router-link to="/"></router-link>
       <router-link to="/"
         ><h3 class="ml-1" style="font-family: cursive">
@@ -44,9 +46,9 @@
               @click="toggleCart"
             ></i>
             <span
-              v-if="cartQuantity > 0"
+              v-if="storeCart.totalQuantity() > 0"
               class="text-xs flex items-center justify-center absolute py-2 px-3 w-1 h-1 rounded-full bg-lime-500 text-white -top-2 left-2"
-              >{{ cartQuantity }}</span
+              >{{ storeCart.totalQuantity() }}</span
             >
           </div>
           <img
@@ -65,9 +67,15 @@
 import { mapStores } from "pinia";
 import useModalStore from "@/stores/modal";
 import useUserStore from "@/stores/user";
+import { useCartStore } from "@/stores/cart";
 
 export default {
   name: "AppHeader",
+  setup() {
+    const storeCart = useCartStore();
+
+    return { storeCart };
+  },
   computed: {
     ...mapStores(useModalStore, useUserStore),
   },
