@@ -1,5 +1,5 @@
 <template>
-  <div class="home bg-lime-500">
+  <div class="home bg-lime-700">
     <div class="product-cards-container">
       <ProductSummaryCard
         v-for="product in items"

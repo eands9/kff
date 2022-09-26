@@ -9,16 +9,16 @@
         class="bg-gray-100 px-3 flex flex-1 rounded-md md:w-1/3 justify-between items-center"
       >
         <button
-          class="text-lime-500 text-3xl font-bold hover:text-lime-600"
+          class="text-lime-700 text-3xl font-bold hover:text-lime-500"
           @click.prevent="storeCart.decreaseQuantity(product)"
         >
           -
         </button>
-        <span class="font-bold text-lime-500 yt-5">{{
+        <span class="font-bold text-lime-700 yt-5">{{
           storeCart.productQuantity(product)
         }}</span>
         <button
-          class="text-lime-500 text-3xl font-bold hover:text-lime-600"
+          class="text-lime-700 text-3xl font-bold hover:text-lime-500"
           @click.prevent="storeCart.increaseQuantity(product)"
         >
           +
@@ -27,7 +27,7 @@
       <button
         v-if="storeCart.productQuantity(product) === 0"
         @click.prevent="storeCart.increaseQuantity(product)"
-        class="bg-lime-500 flex flex-1 py-2 justify-center items-center rounded-md gap-x-2 shadow-md hover:bg-lime-600"
+        class="bg-lime-700 flex flex-1 py-2 justify-center items-center rounded-md gap-x-2 shadow-md hover:bg-lime-500"
       >
         <i class="fas fa-shopping-cart text-white text-sm"></i>
         <span class="text-white">Add to Cart</span>

@@ -3,10 +3,10 @@ a {
 }
 
 /* text-yellow-500 */
-a:hover {
+/* a:hover {
   color: #00D700;
   text-decoration: none;
-}
+} */
 
 .text-orange {
   color: #f59e0b !important;

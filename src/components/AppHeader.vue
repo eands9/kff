@@ -1,13 +1,15 @@
 <template>
-  <header id="header" class="bg-white">
-    <nav class="container mx-auto flex justify-start items-center py-2 px-2">
+  <header id="header" class="bg-black text-green-500">
+    <nav
+      class="container py-2 px-2 mx-auto md:flex md:items-center md:justify-between"
+    >
       <!-- logo and company name -->
       <router-link to="/"
-        ><img src="leaf.jpg" class="h-10 w-10 sm:flex-shrink-0"
+        ><img src="leafgreen3.png" class="h-10 w-10 sm:flex-shrink-0"
       /></router-link>
       <router-link to="/"></router-link>
       <router-link to="/"
-        ><h3 class="ml-1" style="font-family: cursive">
+        ><h3 class="ml-1 hover:text-lime-300" style="font-family: cursive">
           Kai Family Farm
           <h6 class="ml-6" style="font-size: 11px; margin-top: -4px">
             Killer Ass Indo
@@ -59,11 +61,13 @@
         </div>
       </div>
     </nav>
+    <!-- <Cart /> -->
     <!-- <app-cart /> -->
   </header>
 </template>
 
 <script>
+import Cart from "@/components/Cart.vue";
 import { mapStores } from "pinia";
 import useModalStore from "@/stores/modal";
 import useUserStore from "@/stores/user";
@@ -71,6 +75,7 @@ import { useCartStore } from "@/stores/cart";
 
 export default {
   name: "AppHeader",
+  components: { Cart },
   setup() {
     const storeCart = useCartStore();
 
