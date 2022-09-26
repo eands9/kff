@@ -1,21 +1,21 @@
 <template>
   <header id="header" class="bg-black text-lime-600">
-    <nav class="py-2 px-2 mx-auto md:flex md:items-center md:justify-between">
+    <nav
+      class="container py-2 px-2 mx-auto md:flex md:items-center md:justify-between"
+    >
       <!-- logo and company name -->
-      <div class="flex">
-        <router-link to="/"
-          ><img src="leafgreen3.png" class="h-10 w-10 sm:flex-shrink-0 inline"
-        /></router-link>
-        <router-link to="/"></router-link>
-        <router-link to="/"
-          ><h3 class="ml-1 hover:text-lime-300" style="font-family: cursive">
-            Kai Family Farm
-            <h6 class="ml-6" style="font-size: 11px; margin-top: -4px">
-              Killer Ass Indo
-            </h6>
-          </h3></router-link
-        >
-      </div>
+      <router-link to="/"
+        ><img src="leafgreen3.png" class="h-10 w-10 sm:flex-shrink-0"
+      /></router-link>
+      <router-link to="/"></router-link>
+      <router-link to="/"
+        ><h3 class="ml-1 hover:text-lime-300" style="font-family: cursive">
+          Kai Family Farm
+          <h6 class="ml-6" style="font-size: 11px; margin-top: -4px">
+            Killer Ass Indo
+          </h6>
+        </h3></router-link
+      >
 
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->
@@ -39,17 +39,26 @@
             </li>
           </template>
         </ul>
-      </div>
-
-      <!-- Cart -->
-      <div class="flex relative w-7 h-7text-xl cursor-pointer">
-        <i class="fas fa-shopping-cart" @click="toggleCart"></i>
-        <span
-          v-if="storeCart.totalQuantity() > 0"
-          class="text-xs flex items-center justify-center absolute py-2 px-3 w-1 h-1 rounded-full bg-lime-500 text-white -top-2 left-2"
-          >{{ storeCart.totalQuantity() }}</span
-        >
-        <i class="fas fa-short fa-solid fa-bars md:hidden"></i>
+        <div class="flex-1 justify-end flex gap-x-6 items-center">
+          <div
+            class="relative w-7 h-7 cursor-pointer flex items-center justify-center"
+          >
+            <i
+              class="fas fa-shopping-cart text-gray-400 text-xl"
+              @click="toggleCart"
+            ></i>
+            <span
+              v-if="storeCart.totalQuantity() > 0"
+              class="text-xs flex items-center justify-center absolute py-2 px-3 w-1 h-1 rounded-full bg-lime-500 text-white -top-2 left-2"
+              >{{ storeCart.totalQuantity() }}</span
+            >
+          </div>
+          <img
+            src="Kyle.png"
+            class="w-12 h-12 rounded-full cursor-pointer border-4 border-transparent hover:border-lime-500"
+            alt=""
+          />
+        </div>
       </div>
     </nav>
     <!-- <Cart /> -->
