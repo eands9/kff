@@ -1,8 +1,6 @@
 <template>
   <header id="header" class="bg-black text-lime-600">
-    <nav
-      class="p-2 flex justify-between items-center shadow"
-    >
+    <nav class="p-2 flex justify-between items-center shadow">
       <div class="z-[99]">
         <span class="font-[Cursive] cursor-pointer flex">
           <img class="h-10 inline" src="leafgreen3.png" />
@@ -18,10 +16,13 @@
         </span>
       </div>
 
-      <ul class="md:flex md:items-center md:z-auto md:static absolute
-     bg-black w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 
-     opacity-0 top-[-400px] transition-all ease-in duration-500"
-     :class="{'opacity-100 top-[50px] transition-all ease-in duration-500 z-[1]': isMobileNav}">
+      <ul
+        class="md:flex md:items-center md:z-auto md:static absolute bg-black w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500"
+        :class="{
+          'opacity-100 top-[50px] transition-all ease-in duration-300':
+            isDropped,
+        }"
+      >
         <li class="mx-4 my-6 md:my-0">
           <a href="#" class="hover:text-lime-300 duration-500">LOGIN</a>
         </li>
@@ -30,7 +31,14 @@
         </li>
       </ul>
       <div class="flex">
-        <i class="pr-2 fas fa-short fa-solid fa-bars md:hidden" @click="toggleBurger"></i>
+        <i
+          class="pr-2 fas fa-solid md:hidden"
+          :class="{
+            'fa-bars': !isDropped,
+            'fa-times': isDropped,
+          }"
+          @click="toggleBurger"
+        ></i>
         <span class="mr-4 flex relative cursor-pointer right-0">
           <i class="fas fa-shopping-cart" @click="toggleCart"></i>
           <span
@@ -69,12 +77,12 @@ export default {
   data() {
     return {
       cartQuantity: 1,
-      isMobileNav: false,
+      isDropped: false,
     };
   },
   methods: {
-    toggleBurger(){
-      this.isMobileNav = !this.isMobileNav
+    toggleBurger() {
+      this.isDropped = !this.isDropped;
     },
     toggleAuthModal() {
       this.modalStore.isOpen = !this.modalStore.isOpen;
