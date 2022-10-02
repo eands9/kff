@@ -25,24 +25,23 @@
       </ul>
     </nav>
   </header> -->
-  <header
-    class="fixed flex justify-between items-center px-4 md:px-12 h-14 w-full bg-black text-lime-600"
-  >
-    <div>
-      <span class="font-[Cursive] cursor-pointer flex">
-        <img class="h-10 inline" src="leafgreen3.png" />
-
-        <router-link to="/"
-          ><span class="hover:text-lime-300">
-            Kai Family Farm
-            <h6 class="ml-6" style="font-size: 11px; margin-top: -4px">
-              Killer Ass Indo
-            </h6>
-          </span></router-link
-        >
-      </span>
-    </div>
+  <header id="header" class="bg-black text-lime-600">
     <nav class="p-2 flex justify-between items-center shadow sticky top-0">
+      <div class="z-[99]">
+        <span class="font-[Cursive] cursor-pointer flex">
+          <img class="h-10 inline" src="leafgreen3.png" />
+
+          <router-link to="/"
+            ><span class="hover:text-lime-300">
+              Kai Family Farm
+              <h6 class="ml-6" style="font-size: 11px; margin-top: -4px">
+                Killer Ass Indo
+              </h6>
+            </span></router-link
+          >
+        </span>
+      </div>
+
       <ul
         class="md:flex md:items-center md:z-auto md:static absolute bg-black w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500"
         :class="{
@@ -76,7 +75,7 @@
         </span>
       </div>
     </nav>
-    <!-- <Cart /> -->
+    <Cart />
   </header>
 </template>
 

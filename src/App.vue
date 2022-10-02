@@ -1,7 +1,7 @@
 <template>
   <app-header />
   <auth />
-  <router-view />
+  <router-view class="pt-20"/>
 </template>
 
 <script>

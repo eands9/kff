@@ -1,3 +1,4 @@
+import { objectToString } from "@vue/shared";
 import { defineStore } from "pinia";
 
 export const useCartStore = defineStore({
@@ -16,13 +17,15 @@ export const useCartStore = defineStore({
       }
     },
     decreaseQuantity(product) {
-      let item = this.cart.find((i) => i.id === product.id);
+      let item2 = this.cart.find((i) => i.id === product.id);
+      const index = this.cart.findIndex((object) => {
+        return object.id === item2.id;
+      });
 
-      if (item && item.quantity > 0) {
-        item.quantity--;
-        if (item.quantity === 0) {
-          let item2 = this.cart.find((i) => i.id === product.id);
-          this.cart.splice(this.cart.indexOf(item2.id, 1));
+      if (item2 && item2.quantity > 0) {
+        this.cart[index].quantity--;
+        if (item2.quantity === 0) {
+          this.cart.splice(index, 1);
         }
       }
     },
