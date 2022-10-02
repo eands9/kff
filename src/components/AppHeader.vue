@@ -6,9 +6,11 @@
       <img src="leafgreen3.png" alt="Leaf" class="h-10" />
     </a>
     <nav>
-      <i class="fas fa-bars h-8 w-8 text-lime-500 md:hidden"></i>
+      <i class="fas fa-bars h-8 w-8 text-lime-500 md:hidden" @click="navOpen = !navOpen"></i>
       <ul
-        class="text-lime-500 fixed left-0 right-0 space-y-4 p-4 min-h-screen transform translate-x-full md:relative md:flex md:min-h-0 md:space-y-0 md:space-x-6 md:p-0 md:translate-x-0"
+        class="fixed left-0 right-0 min-h-screen px-4 pt-8 space-y-4 bg-black text-lime-600 transform transition duration-300 translate-x-full md:relative md:flex md:space-x-10 md:min-h-0 md:px-0 md:py-0 md:space-y-0 md:translate-x-0"
+        :class="{ 'translate-x-full': !navOpen, 'translate-x-0': navOpen }"
+
       >
         <li>
           <a href="#">Home</a>
@@ -25,8 +27,9 @@
       </ul>
     </nav>
   </header> -->
+
   <header
-    class="fixed flex justify-between items-center px-4 md:px-12 h-14 w-full bg-black text-lime-600"
+  class="fixed flex justify-between items-center px-4 md:px-12 h-14 w-full bg-black text-lime-600"
   >
     <div>
       <span class="font-[Cursive] cursor-pointer flex">
@@ -42,13 +45,12 @@
         >
       </span>
     </div>
-    <nav class="p-2 flex justify-between items-center shadow sticky top-0">
+    <nav class="flex justify-between items-center shadow">
       <ul
-        class="md:flex md:items-center md:z-auto md:static absolute bg-black w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500"
-        :class="{
-          'opacity-100 top-[50px] transition-all ease-in duration-300':
-            isDropped,
-        }"
+      class="fixed left-0 top-11 md:flex bg-black w-full pl-7 transform transition duration-300 translate-x-full
+        md:relative md:translate-x-0 md:w-auto md:py-0 md:pl-0 md:opacity-100 md:top-0
+         "
+        :class="{ 'translate-x-full': !navOpen, 'translate-x-0': navOpen }"
       >
         <li class="mx-4 my-6 md:my-0">
           <a href="#" class="hover:text-lime-300 duration-500">LOGIN</a>
@@ -61,10 +63,10 @@
         <i
           class="pr-2 fas fa-solid md:hidden"
           :class="{
-            'fa-bars': !isDropped,
-            'fa-times': isDropped,
+            'fa-bars': !navOpen,
+            'fa-times': navOpen,
           }"
-          @click="toggleBurger"
+          @click="navOpen = !navOpen"
         ></i>
         <span class="mr-4 flex relative cursor-pointer right-0">
           <i class="fas fa-shopping-cart" @click="toggleCart"></i>
@@ -76,7 +78,6 @@
         </span>
       </div>
     </nav>
-    <!-- <Cart /> -->
   </header>
 </template>
 
@@ -101,13 +102,14 @@ export default {
   data() {
     return {
       cartQuantity: 1,
-      isDropped: false,
+      // isDropped: false,
+      navOpen: false,
     };
   },
   methods: {
-    toggleBurger() {
-      this.isDropped = !this.isDropped;
-    },
+    // toggleBurger() {
+    //   this.isDropped = !this.isDropped;
+    // },
     toggleAuthModal() {
       this.modalStore.isOpen = !this.modalStore.isOpen;
       console.log(this.modalStore.isOpen);
