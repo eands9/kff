@@ -30,8 +30,11 @@
         </div>
       </div>
       <h3>__________________</h3>
+      <div class="flex justify-between items-center w-1/2">
       <h4 class="font-light text-gray-500">Total</h4>
       <span class="text-black font-bold text-lg">${{ storeCart.totalAmount() }}</span>
+      </div>
+
       <button
         class="bg-lime-600 w-full py-2 rounded-md shadow-md text-white font-bold mt-6"
       >
