@@ -9,14 +9,9 @@
       <i class="pr-2 fas fa-solid fa-times" @click="storeCart.toggleCart()"></i>
     </div>
 
-    <div v-if="storeCart.totalQuantity() > 0" class="p-4 h-40">
+    <div v-if="storeCart.totalQuantity() > 0" class="p-4">
       <div v-for="product in storeCart.cart" :key="product.id">
-        <div class="flex gap-x-6 items-center">
-          <!-- <img
-            src="@/assets/images/image-product-1.jpg"
-            class="w-12 h-12 rounded-md"
-            alt=""
-          /> -->
+        <div class="flex items-center pt-5">
           <div class="flex flex-col items-start">
             <h4 class="font-light text-gray-500">
               {{ product.name }}
@@ -34,6 +29,9 @@
           ></i>
         </div>
       </div>
+      <h3>__________________</h3>
+      <h4 class="font-light text-gray-500">Total</h4>
+      <span class="text-black font-bold text-lg">${{ storeCart.totalAmount() }}</span>
       <button
         class="bg-lime-600 w-full py-2 rounded-md shadow-md text-white font-bold mt-6"
       >

@@ -8,7 +8,7 @@ export const useCartStore = defineStore({
     cartOpen: false,
   }),
   actions: {
-    toggleCart(){
+    toggleCart() {
       this.cart.cartOpen = !this.cart.cartOpen;
     },
     increaseQuantity(product) {
@@ -63,6 +63,15 @@ export const useCartStore = defineStore({
 
       if (totalQty) return totalQty;
       else return 0;
+    },
+    totalAmount: (state) => () => {
+      let subTotal = 0;
+
+      state.cart.forEach((element) => {
+        subTotal = subTotal + element.price * element.quantity;
+      });
+
+      return subTotal;
     },
   },
 });
