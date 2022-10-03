@@ -1,40 +1,10 @@
 <template>
-  <!-- <header
-    class="fixed flex justify-between items-center px-4 md:px-12 h-14 w-full bg-black"
-  >
-    <a href="">
-      <img src="leafgreen3.png" alt="Leaf" class="h-10" />
-    </a>
-    <nav>
-      <i class="fas fa-bars h-8 w-8 text-lime-500 md:hidden" @click="navOpen = !navOpen"></i>
-      <ul
-        class="fixed left-0 right-0 min-h-screen px-4 pt-8 space-y-4 bg-black text-lime-600 transform transition duration-300 translate-x-full md:relative md:flex md:space-x-10 md:min-h-0 md:px-0 md:py-0 md:space-y-0 md:translate-x-0"
-        :class="{ 'translate-x-full': !navOpen, 'translate-x-0': navOpen }"
-
-      >
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#features">Features</a>
-        </li>
-        <li>
-          <a href="#about">About</a>
-        </li>
-        <li>
-          <a href="#contact">Contact</a>
-        </li>
-      </ul>
-    </nav>
-  </header> -->
-
   <header
-  class="fixed flex justify-between items-center px-4 md:px-12 h-14 w-full bg-black text-lime-600"
+    class="fixed flex justify-between items-center px-4 md:px-12 h-14 w-full bg-black text-lime-600"
   >
     <div>
       <span class="font-[Cursive] cursor-pointer flex">
         <img class="h-10 inline" src="leafgreen3.png" />
-
         <router-link to="/"
           ><span class="hover:text-lime-300">
             Kai Family Farm
@@ -47,9 +17,7 @@
     </div>
     <nav class="flex justify-between items-center shadow">
       <ul
-      class="fixed left-0 top-11 md:flex bg-black w-full pl-7 transform transition duration-300 translate-x-full
-        md:relative md:translate-x-0 md:w-auto md:py-0 md:pl-0 md:opacity-100 md:top-0
-         "
+        class="fixed left-0 top-11 md:flex bg-black w-full pl-7 transform transition duration-300 translate-x-full md:relative md:translate-x-0 md:w-auto md:py-0 md:pl-0 md:opacity-100 md:top-0"
         :class="{ 'translate-x-full': !navOpen, 'translate-x-0': navOpen }"
       >
         <li class="mx-4 my-6 md:my-0">
@@ -68,17 +36,18 @@
           }"
           @click="navOpen = !navOpen"
         ></i>
-        <span class="mr-4 flex relative cursor-pointer right-0">
+        <span class="mr-4 flex relative right-0">
           <i class="fas fa-shopping-cart" @click="toggleCart"></i>
-          <span
+          <span @click="cartOpen = !cartOpen"
             v-if="storeCart.totalQuantity() > 0"
-            class="text-xs flex items-center justify-center absolute py-2 px-3 w-1 h-1 rounded-full bg-lime-500 text-white -top-2 left-2"
+            class="text-xs flex items-center justify-center absolute py-2 px-3 w-1 h-1 rounded-full bg-lime-500 text-white -top-2 left-2 cursor-pointer"
             >{{ storeCart.totalQuantity() }}</span
           >
         </span>
       </div>
     </nav>
   </header>
+  <Cart v-if="cartOpen" />
 </template>
 
 <script>
@@ -93,7 +62,6 @@ export default {
   components: { Cart },
   setup() {
     const storeCart = useCartStore();
-
     return { storeCart };
   },
   computed: {
@@ -102,14 +70,11 @@ export default {
   data() {
     return {
       cartQuantity: 1,
-      // isDropped: false,
       navOpen: false,
+      cartOpen: false,
     };
   },
   methods: {
-    // toggleBurger() {
-    //   this.isDropped = !this.isDropped;
-    // },
     toggleAuthModal() {
       this.modalStore.isOpen = !this.modalStore.isOpen;
       console.log(this.modalStore.isOpen);

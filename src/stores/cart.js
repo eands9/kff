@@ -17,33 +17,25 @@ export const useCartStore = defineStore({
       }
     },
     decreaseQuantity(product) {
-      let item2 = this.cart.find((i) => i.id === product.id);
+      let item = this.cart.find((i) => i.id === product.id);
       const index = this.cart.findIndex((object) => {
-        return object.id === item2.id;
+        return object.id === item.id;
       });
 
-      if (item2 && item2.quantity > 0) {
+      if (item && item.quantity > 0) {
         this.cart[index].quantity--;
-        if (item2.quantity === 0) {
-          this.cart.splice(index, 1);
+        if (item.quantity === 0) {
+          this.clearCart(product);
         }
       }
     },
-    // addToCart(product) {
-    //   let item = this.cart.find((i) => i.id === product.id);
-    //   let itemInCart = this.cartTotal.find((j) => j.id === product.id);
-
-    //   if (itemInCart) {
-    //     this.cartTotal.splice(this.cartTotal.indexOf(itemInCart.id, 1));
-    //     this.cartTotal.push({ ...item });
-    //   } else {
-    //     this.cartTotal.push({ ...item });
-    //   }
-    // },
     clearCart(product) {
       // Delete record from card/cart and not cartTotal
       let item = this.cart.find((i) => i.id === product.id);
-      this.cart.splice(this.cart.indexOf(item.id, 1));
+      const index = this.cart.findIndex((object) => {
+        return object.id === item.id;
+      });
+      this.cart.splice(index, 1);
     },
   },
   getters: {
@@ -52,6 +44,11 @@ export const useCartStore = defineStore({
 
       if (item) return item.quantity;
       else return 0;
+    },
+    productSubTotal: (state) => (product) => {
+      const item = state.cart.find((i) => i.id === product.id);
+
+      if (item) return item.quantity * item.price;
     },
     totalQuantity: (state) => () => {
       let totalQty = 0;
