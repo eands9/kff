@@ -36,18 +36,21 @@
           }"
           @click="navOpen = !navOpen"
         ></i>
-        <span class="mr-4 flex relative right-0">
-          <i class="fas fa-shopping-cart" @click="toggleCart"></i>
-          <span @click="cartOpen = !cartOpen"
+        <span
+          class="mr-4 flex relative right-0 cursor-pointer"
+          @click="storeCart.toggleCart()"
+        >
+          <i class="fas fa-shopping-cart"></i>
+          <span
             v-if="storeCart.totalQuantity() > 0"
-            class="text-xs flex items-center justify-center absolute py-2 px-3 w-1 h-1 rounded-full bg-lime-500 text-white -top-2 left-2 cursor-pointer"
+            class="text-xs flex items-center justify-center absolute py-2 px-3 w-1 h-1 rounded-full bg-lime-500 text-white -top-2 left-2"
             >{{ storeCart.totalQuantity() }}</span
           >
         </span>
       </div>
     </nav>
   </header>
-  <Cart v-if="cartOpen" />
+  <Cart v-if="storeCart.cart.cartOpen" />
 </template>
 
 <script>

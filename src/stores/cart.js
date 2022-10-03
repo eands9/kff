@@ -5,8 +5,12 @@ export const useCartStore = defineStore({
   id: "cartStore",
   state: () => ({
     cart: [],
+    cartOpen: false,
   }),
   actions: {
+    toggleCart(){
+      this.cart.cartOpen = !this.cart.cartOpen;
+    },
     increaseQuantity(product) {
       let item = this.cart.find((i) => i.id === product.id);
 
