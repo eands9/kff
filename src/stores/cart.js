@@ -33,6 +33,13 @@ export const useCartStore = defineStore({
         }
       }
     },
+    updateQuantity(product, qty) {
+      const index = this.cart.findIndex((object) => {
+        return object.id === product.id;
+      });
+
+      this.cart[index].quantity = qty;
+    },
     clearCart(product) {
       // Delete record from card/cart and not cartTotal
       let item = this.cart.find((i) => i.id === product.id);

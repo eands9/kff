@@ -18,11 +18,25 @@
             </h4>
             <p class="text-gray-500">
               ${{ product.price }} x {{ product.quantity }} =
-              <span class="text-black font-bold"
-                > ${{ storeCart.productSubTotal(product) }}</span
+              <span class="text-black font-bold">
+                ${{ storeCart.productSubTotal(product) }}</span
               >
             </p>
           </div>
+
+          <div class="flex justify-center">
+            <div class="mb-3 xl:w-96">
+              <input
+                @change="storeCart.updateQuanity(product, qty)"
+                type="number"
+                class="form-control block w-1/2 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                id="exampleNumber0"
+                placeholder="Qty"
+                v-model="product.quantity"
+              />
+            </div>
+          </div>
+
           <i
             class="fas flex flex-1 justify-end fa-trash-alt cursor-pointer text-gray-400"
             @click="storeCart.clearCart(product)"
@@ -31,8 +45,10 @@
       </div>
       <h3>__________________</h3>
       <div class="flex justify-between items-center w-1/2">
-      <h4 class="font-light text-gray-500">Total</h4>
-      <span class="text-black font-bold text-lg">${{ storeCart.totalAmount() }}</span>
+        <h4 class="font-light text-gray-500">Total</h4>
+        <span class="text-black font-bold text-lg"
+          >${{ storeCart.totalAmount() }}</span
+        >
       </div>
 
       <button
@@ -74,3 +90,17 @@ export default {
   },
 };
 </script>
+
+<style>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+</style>
