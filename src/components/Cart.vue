@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full right-0 sm:w-80 sm:top-16 bg-white top-28 absolute rounded-md shadow-lg"
+    class="w-full right-0 w-80 top-14 bg-white absolute rounded-md shadow-lg"
   >
     <div
       class="flex bg-lime-600 justify-between items-center text-white text-sm font-bold p-4 border-b-2 border-solid border-light-grayish-blue shadow-lg"
@@ -9,7 +9,8 @@
       <i class="pr-2 fas fa-solid fa-times" @click="storeCart.toggleCart()"></i>
     </div>
 
-    <div v-if="storeCart.totalQuantity() > 0" class="p-4">
+    <!-- <div v-if="Object.keys(storeCart).length !== null && storeCart.constructor === Object" class="p-4"> -->
+    <div v-if="storeCart.totalAmount() > 0" class="p-4">
       <div v-for="product in storeCart.cart" :key="product.id">
         <div class="flex items-center pt-5">
           <div class="flex flex-col items-start">
@@ -27,11 +28,10 @@
           <div class="flex justify-center">
             <div class="mb-3 xl:w-96">
               <input
-                @change="storeCart.updateQuanity(product, qty)"
+                @change="storeCart.updateQuantity(product, product.quantity)"
                 type="number"
-                class="form-control block w-1/2 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                class="form-control block w-10 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="exampleNumber0"
-                placeholder="Qty"
                 v-model="product.quantity"
               />
             </div>

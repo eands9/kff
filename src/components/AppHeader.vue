@@ -49,8 +49,9 @@
         </span>
       </div>
     </nav>
+    <Cart v-if="storeCart.cart.cartOpen" />
   </header>
-  <Cart v-if="storeCart.cart.cartOpen" />
+
 </template>
 
 <script>
